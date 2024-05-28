@@ -25,7 +25,7 @@ jobs:
 
     - name: Build
       run: |
-        ls - la
+        ls -la
         pwd
         dotnet build --no-restore
       working-directory: Helloworld
