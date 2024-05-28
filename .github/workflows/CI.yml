@@ -36,4 +36,4 @@ jobs:
         ls -la
         pwd
         dotnet test --no-restore --verbosity normal
-      working-directory: HelloWorld
+    
