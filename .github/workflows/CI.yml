@@ -24,8 +24,11 @@ jobs:
  
 
     - name: Build
-      run: dotnet build --no-restore
-       working-directory: C:\Users\JAHNBR\OneDrive - Capgemini\Desktop\GHA\Helloworld
+      run: |
+        ls - la
+        pwd
+        dotnet build --no-restore
+      working-directory: Helloworld
       
 
     - name: Test
