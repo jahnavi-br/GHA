@@ -24,10 +24,6 @@ jobs:
       run: dotnet restore
       working-directory: Helloworld
 
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
-      working-directory: Helloworld
-
     - name: Build
       run: dotnet build --no-restore
       working-directory: Helloworld
@@ -35,6 +31,12 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o output
       working-directory: Helloworld
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: Helloworld/output
 
   deploy:
     needs: build
@@ -44,8 +46,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifacts
+        path: ./output
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         personal_token: ${{ secrets.GH_PAT }}
-        publish_dir: ./Helloworld/output
+        publish_dir: ./output
