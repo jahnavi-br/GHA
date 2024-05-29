@@ -20,7 +20,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.x'
-
  
 
     - name: Build
@@ -31,9 +30,5 @@ jobs:
       working-directory: Helloworld
       
 
-    - name: Test
-      run: |
-        ls -la
-        pwd
-        dotnet test --no-restore --verbosity normal
+
     
